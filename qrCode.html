@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        #values {
+            width: 70%;
+            height: 100%;
+            position: absolute;
+            text-align: center;
+            background-color:coral;
+        }
+        body, html {
+            max-height: 100%;
+            height:100%;
+            margin:0;
+        }
+
+        #qrcode {
+            right:10%;
+            position:absolute;
+            top:20%;
+            border:1px solid black;
+        }
+        #qrBg {
+            position:absolute;
+            right:0;
+            height:100%;
+            top:0;
+            width:30%;
+            background-color:dodgerblue;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="values">
+        <textarea type="text" id="qr" name="" style="position:absolute;top:40%;left:27%;height:100px;width:20%;font-size:15px;"></textarea>
+        <button style="position:absolute;top:40%;left:50%;width:10%;height:100px;">Generate</button>
+    </div>
+    <div id="qrBg">
+        <div id="qrcode"></div>
+    </div>
+
+    <script src="qrcode.js"></script>
+    <script>
+
+        let input = document.getElementById("qr");
+        let button = document.querySelector('button');
+        let qrcode = new QRCode(document.querySelector('#qrcode'), {
+            width: 350,
+            height: 350,
+            colorDark: "black",
+            colorLight: "white",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+        button.addEventListener('click', () => {
+            let inputValue = input.value;
+            qrcode.makeCode(inputValue);
+        });
+    </script>
+
+</body>
+</html>
